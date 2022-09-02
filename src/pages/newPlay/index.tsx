@@ -12,12 +12,13 @@ const NewPlay = () => {
     const [iniciar, setIniciar] = useState<boolean>(true);
     const [sortear, setSortear] = useState<boolean>(true);
     const [midias, setMidias] = useState<boolean>(true);
-    const [lista, setLista] = useState<IMovie[]>([]);
+    const [listaMovie, setListaMovie] = useState<IMovie[]>([]);
 
     useEffect(() => {
         if (login) {
             setSortear(!sortear);
             setIniciar(!iniciar);
+            setMidias(!midias);
         }
         if (!login) {
             setIniciar(true);
@@ -36,13 +37,19 @@ const NewPlay = () => {
         }
     }, [iniciar]);
 
+    useEffect(() => {
+        if (!iniciar && !login) {
+            setMidias(true);
+        }
+    }, [sortear]);
+
     return (
         <div className={styles['play-container1']}>
             <div className={styles['play-container']}>
                 {login && <Login estado={login} setEstado={setLogin} />}
                 {iniciar && <Iniciar estado={iniciar} setEstado={setIniciar} />}
-                {sortear && <Sortear estado={sortear} setEstado={setSortear} />}
-                {sortear && <Midias lista={lista} setLista={setLista}/>}
+                {sortear && <Sortear estado={sortear} setEstado={setSortear} setListaMovie={setListaMovie} />}
+                {midias && <Midias listaMovie={listaMovie}/>}
             </div>
         </div>
     )

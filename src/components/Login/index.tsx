@@ -1,7 +1,5 @@
-import Button from 'components/button';
 import Input from 'components/input';
 import { IUserToken } from 'interface/IUserToken';
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { logarUsuarioService } from 'service/Service';
 import styles from './Login.module.scss';
@@ -17,7 +15,8 @@ const Login = ({estado, setEstado}: {estado: boolean, setEstado: React.Dispatch<
 
     async function executarLogin() {
        const userToken: IUserToken = await logarUsuarioService(login, senha);
-       console.log(userToken);
+       localStorage.setItem('token', userToken.token);
+       //console.log(localStorage.getItem('token'));
        setEstado(false);
        
     }

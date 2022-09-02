@@ -3,13 +3,7 @@ import styles from './Midia.module.scss';
 import { IMovie } from 'interface/IMovie';
 import { useEffect } from 'react';
 
-const Midias = ({ lista, setLista }: { lista: IMovie[], setLista: React.Dispatch<React.SetStateAction<IMovie[]>> }) => {
-    let listaPro: IMovie[] = [];
-    useEffect(() => {
-        let posicao = 0;
-        listaPro = lista.map(camp => { camp.position = ++posicao; return camp });
-    }, [lista])
-
+const Midias = ({ listaMovie }: { listaMovie: IMovie[]}) => {
     return (
         <>
             <h1>Olá , vamos Jogar?</h1>
@@ -26,7 +20,7 @@ const Midias = ({ lista, setLista }: { lista: IMovie[], setLista: React.Dispatch
             <div>
                 <h2>Escolha a Mídia que você acha que teve mais votos no IMDB</h2>
                 <div className={styles['container-movies']}>
-                    {listaPro.map(movie => (
+                    {listaMovie.map(movie => (
                         <div>
                             <h3>Dados da {movie.position} ª Midia</h3>
                             <p>Código IMDB: {movie.imdbId}</p>

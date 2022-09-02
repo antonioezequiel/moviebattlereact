@@ -4,6 +4,7 @@ import { IUsuario } from 'interface/IUsuario';
 import { User } from 'interface/User';
 import React from 'react';
 import http from './index';
+
 //export declare const BuscaRestaurantes: () => IRestaurante[];
 
 /*export const buscaRestaurantes = async () => {
@@ -63,17 +64,37 @@ export async function logarUsuarioService(login: string, senha: string) {
     });
 }
 
-export async function buscarMidiasService() {
-  return await http.get<IMovie[]>(`api/movieshow/sortear`, {
+export async function iniciarPartidaService() {
+  return await http.get(`api/movieshow/iniciar`, {
         headers: {
-          'Authorization':  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqb2dvIGRlIGZpbG1lc…kzNn0.ObOSmv3EteeQJ_j9p6C4sHqTExlo4MI6xGE-cov6Crc',
-          'Content-Type': 'application/json',
-          'x-api-key': 'key',
-          'x-api-secret': 'key',
-          "Accept": "application/json"
+          'Authorization':  `Bearer ${localStorage.getItem('token')}`
         }
       })
     .then(resp => {
+      //console.log(resp)
+      return resp.data;
+    })
+    .catch(erro => {
+      console.log(erro);
+      return {
+        position: 0,
+        title: '',
+        year: 0,
+        imdbId: 1,
+        foto: '',
+        categoria: ''
+      };
+    });
+}
+
+export async function buscarMidiasService() {
+  return await http.get<IMovie[]>(`api/movieshow/sortear`, {
+        headers: {
+          'Authorization':  `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+    .then(resp => {
+     // console.log(resp)
       return resp.data;
     })
     .catch(erro => {
