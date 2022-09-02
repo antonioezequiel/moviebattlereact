@@ -17,9 +17,10 @@ const Home = () => {
     const carregarCampeoes = async () => {
         let posicao = 0;
         //obter campeões do jogo
-        const listaProv:User[] = await listarCampeoes('1').then();
-        listaProv.map(camp => (camp.position = ++posicao));
-        setLista(listaProv);
+        const listaProv: User[] = await listarCampeoes('1').then();
+        const listaOrdenada: User[] = listaProv.sort((a, b) => (a.score > b.score) ? -1 : 1);
+        listaOrdenada.map(camp => (camp.position = ++posicao));
+        setLista(listaOrdenada);
     }
 
     return (
@@ -39,9 +40,9 @@ const Home = () => {
                 {lista.map(camp => (
                     <div className={styles.moment}>
                         <div className={`${Number(camp.position) <= 3 && styles.topPosition} ${Number(camp.position) > 3 && styles.normal}`}>
-                        {camp.position == 1 && <img src={coroaOuro} alt="coroaOuro" />}
-                        {camp.position == 2 && <img src={coroaPrata} alt="coroaPrata" />}
-                        {camp.position == 3 && <img src={coroaBronze} alt="coroaBronze" />}
+                            {camp.position == 1 && <img src={coroaOuro} alt="coroaOuro" />}
+                            {camp.position == 2 && <img src={coroaPrata} alt="coroaPrata" />}
+                            {camp.position == 3 && <img src={coroaBronze} alt="coroaBronze" />}
                             <div className={styles.content}>
                                 <h2>{camp.position} ª Posição </h2>
                                 <p>Nome: {camp.usuario}</p>

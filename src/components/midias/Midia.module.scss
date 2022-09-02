@@ -1,0 +1,116 @@
+button {
+    background-color: #efefef;
+    border: none;
+    padding: 0.6em 1em;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1em;
+    border: 2px solid transparent;
+    transition: 0.4s;
+    margin-bottom: 0.8em;
+    width: 140px;
+    height: 60px;
+    margin-top: 5px;
+  }
+  
+  .sortear, .finalizar {
+    text-align: center;
+    margin: 10 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .sortear {
+    float: left;
+  }
+  .finalizar{
+    float: right;
+    clear: right;
+  }
+
+  .container_movies .finalizar {
+    margin: auto;
+  }
+
+  button:hover {
+    color: #968c5c;
+    border-color: #968c5c;
+    background-color: transparent;
+  }
+  .container_movies {
+    max-width: 100%;
+    margin: 10 auto;
+    justify-content: space-between;
+    margin: auto;
+    min-height: 10px;
+  }
+
+  .container_movies h3{
+    margin-top: 20px;
+    color: #4e4c40;
+    text-align: center;
+  }
+  .imgMovie{
+    width: 120px;
+    height: 100px;
+  }
+  .escolherMovie{
+    width: 160px;
+    height: 60px;
+  }
+  .saudacao, .apresentacaoMovies {
+    margin: 20px 0;
+    font-size: x-large;
+    color: #968c5c;
+    font-weight: bolder;
+  }
+
+  .tituloMovie{
+    margin: 10px 0;
+    font-size: medium;
+    color: #968c5c;
+    font-weight: bolder;
+  }
+
+  .dadosMovie{
+    padding: 5px 0;
+    color: #5c5636;
+    font-weight: 700;
+  }
+
+h2 {
+    margin-top: 20px;
+    color: #3d3b30;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .container_movies .positionOne{
+    float: left;
+  }
+
+  .container_movies .positionTwo{
+    float: right;
+  }
+
+  .container_movies .positionOne, .positionTwo {
+    width: 250px; 
+    height: 350px;
+    border-color: #3d3b30;
+    border-radius: 10px;
+    border:  2px;
+    background-color: #d6cece;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 0.8em;
+  }
+
+  .container_movies .postionOne p, .postionTwo p{
+    margin-bottom: 1em;
+    font-size: medium;
+    font-style: oblique;
+    font-weight: bolder;
+    margin-top: 10px;
+    color: #5c5636;
+  } 
+ 

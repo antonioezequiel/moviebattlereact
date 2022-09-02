@@ -3,7 +3,6 @@ import Input from 'components/input';
 import { useState } from 'react';
 import { cadastrarUsuarioService } from 'service/Service';
 import styles from './CreateUser.module.scss';
-import { IUsuario } from 'interface/IUsuario';
 
 const CreateUser = () => {
     const [senha, setSenha] = useState<string>('');
@@ -24,7 +23,7 @@ const CreateUser = () => {
 
     return (
         <div className={styles['new-container']}>
-            <h1>Olá Novo Jogador, vamos nos cadastrar e jogar grandes partidas?</h1>
+            <h1 className={styles.saudacao}>Olá Novo Jogador, vamos nos cadastrar e jogar grandes partidas?</h1>
             <form onSubmit={(event) => cadastrarUsuario(event)}>
                 <div className={styles['form-group']}>
                     <Input tipo='text' estado={login} setEstado={setLogin} placeholder="Coloque um login" label='Login:' required={true} />
@@ -35,7 +34,7 @@ const CreateUser = () => {
                 <div className={styles['form-group']}>
                     <Input tipo='password' estado={confSenha} setEstado={setConfSenha} placeholder="Repetir a senha" label='Repetir Senha:' required={true} />
                     <div>
-                        <p>As duas senhas não são iguais</p>
+                        <p></p>
                     </div>
                 </div>
                 <Button tipo='submit' valor='Salvar' onclick={()=>{}} />

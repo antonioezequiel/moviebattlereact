@@ -23,7 +23,7 @@ const Login = ({estado, setEstado}: {estado: boolean, setEstado: React.Dispatch<
 
     return (
         <div className={styles["new-container"]}>
-            <h1>Faça o login para iniciar uma partida</h1>
+            <h1 className={styles.saudacao}>Faça o login para iniciar uma partida</h1>
             <form onSubmit={(event) => logarUsuario(event)}>
                 <div className={styles["form-group"]}>
                     <Input estado={login} label='' placeholder='Digite seu login' required={true} setEstado={setLogin} tipo='text' />
@@ -31,8 +31,7 @@ const Login = ({estado, setEstado}: {estado: boolean, setEstado: React.Dispatch<
                 <div className={styles["form-group"]}>
                     <Input estado={senha} label='' placeholder='Digite sua senha' required={true} setEstado={setSenha} tipo='password' />
                 </div>
-                <button type='submit'>logar</button>
-                
+                <button type='submit'>logar</button>                
             </form>
         </div>
     )

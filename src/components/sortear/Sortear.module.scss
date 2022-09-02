@@ -1,0 +1,43 @@
+.sortear {
+    text-align: center;
+    margin: 10 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .sortear {
+    float: left;
+  }
+  .finalizar{
+    float: right;
+    clear: right;
+  }
+
+  .sortear:hover {
+    color: #968c5c;
+    border-color: #968c5c;
+    background-color: transparent;
+  }
+
+  .sortear {
+    background-color: #efefef;
+    border: none;
+    padding: 0.6em 1em;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1em;
+    border: 2px solid transparent;
+    transition: 0.4s;
+    margin-bottom: 0.8em;
+    width: 140px;
+    height: 60px;
+    margin-top: 5px;
+  }
+
+  .saudacao {
+    margin: 20px 0;
+    font-size: x-large;
+    color: #968c5c;
+    font-weight: bolder;
+  }

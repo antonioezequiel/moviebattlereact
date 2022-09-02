@@ -45,6 +45,7 @@ export async function cadastrarUsuarioService(login: string, senha: string) {
 export async function listarCampeoes(pagina: string) {
   return await http.get<User[]>(`api/movieshow/ranking?page=${pagina}`)
     .then(resp => {
+      console.log(resp.data);
       return resp.data;
     })
     .catch(erro => {
@@ -65,7 +66,7 @@ export async function logarUsuarioService(login: string, senha: string) {
 }
 
 export async function iniciarPartidaService() {
-  return await http.get(`api/movieshow/iniciar`, {
+  return await http.get<User>(`api/movieshow/iniciar`, {
         headers: {
           'Authorization':  `Bearer ${localStorage.getItem('token')}`
         }
@@ -81,6 +82,7 @@ export async function iniciarPartidaService() {
         title: '',
         year: 0,
         imdbId: 1,
+        score: 0,
         foto: '',
         categoria: ''
       };
@@ -104,6 +106,30 @@ export async function buscarMidiasService() {
         title: '',
         year: 0,
         imdbId: 1,
+        foto: '',
+        categoria: ''
+      };
+    });
+}
+
+export async function jogarService(imdbId: number) {
+  console.log(imdbId);
+  return await http.post<User>(`api/movieshow/jogar`, {imdbID: imdbId}, {
+        headers: {
+          'Authorization':  `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+    .then(resp => {
+      return resp.data;
+    })
+    .catch(erro => {
+      console.log(erro);
+      return {
+        position: 0,
+        title: '',
+        year: 0,
+        imdbId: 1,
+        score: 0,
         foto: '',
         categoria: ''
       };

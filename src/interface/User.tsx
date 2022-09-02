@@ -1,7 +1,7 @@
 export class User {
     id?: number
     usuario?: string
-    score?: number
+    score: number = 0
     life?: number
     message?: string
     round?: number
