@@ -4,25 +4,32 @@ import { IMovie } from 'interface/IMovie';
 import { User } from 'interface/User';
 import { jogarService } from 'service/Service';
 
-const Midias = ({ listaMovie, setEscolherMovie, setUser, setJogoFinalizado}: { listaMovie: IMovie[], setEscolherMovie: React.Dispatch<React.SetStateAction<boolean>>, setUser: React.Dispatch<React.SetStateAction<User>>, setJogoFinalizado: React.Dispatch<React.SetStateAction<boolean>>}) => {
-    async function escolhaFilme (movie: IMovie) {
+interface Props {
+    listaMovie: IMovie[],
+    setEscolherMovie: React.Dispatch<React.SetStateAction<boolean>>,
+    setUser: React.Dispatch<React.SetStateAction<User>>,
+    setJogoFinalizado: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Midias = ({ listaMovie, setEscolherMovie, setUser, setJogoFinalizado }: Props) => {
+    async function escolhaFilme(movie: IMovie) {
         setEscolherMovie(true);
         const user: User = await jogarService(movie.imdbId);
         setUser(user);
 
-        if(user.life === 0){
+        if (user.life === 0) {
             setJogoFinalizado(true);
         }
     }
     return (
         <>
             <div className={styles.containerGeral}>
-                {listaMovie.length > 0  && <h2 className={styles.apresentacaoMovies}>Escolha a Mídia que você acha que teve mais votos no IMDB</h2>}
+                {listaMovie.length > 0 && <h2 className={styles.apresentacaoMovies}>Escolha a Mídia que você acha que teve mais votos no IMDB</h2>}
                 <div className={styles.container_movies}>
                     {listaMovie.map(movie => (
                         <div className={`${movie.position == 1 && styles.positionOne} ${movie.position == 2 && styles.positionTwo}`}>
                             <h3 className={styles.tituloMovie}>Dados da {movie.position} ª Midia</h3>
-                            <img src={movie.foto} alt={movie.title} className={styles.imgMovie}/>
+                            <img src={movie.foto} alt={movie.title} className={styles.imgMovie} />
                             <p className={styles.dadosMovie}>Código IMDB: {movie.imdbId}</p>
                             <p className={styles.dadosMovie}>Titulo: {movie.title} </p>
                             <p className={styles.dadosMovie}>Ano: {movie.year} </p>

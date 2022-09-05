@@ -18,9 +18,9 @@ const NewPlay = () => {
     const [midias, setMidias] = useState<boolean>(true);
     const [listaMovie, setListaMovie] = useState<IMovie[]>([]);
     const [user, setUser] = useState<User>(new User);
-    const [finalizar, setFinalizar] = useState<boolean>(false);
     const [escolherMovie, setEscolherMovie] = useState<boolean>(false);
     const [jogoFinalizado, setJogoFinalizado] = useState<boolean>(false);
+    const [tempoRedirect, setTempoRedirect] = useState<number>(10);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -65,18 +65,22 @@ const NewPlay = () => {
             setTimeout(() => {
                 navigate('/');
             }, 10000);
+
+            setInterval(()=>{
+                setTempoRedirect(tempoRedirect-1);
+            }, 1000);
         }
-    }, [jogoFinalizado])
+    }, [jogoFinalizado, tempoRedirect]);
 
     return (
         <div className={styles['play-container1']}>
             <div className={styles['play-container']}>
                 {login && <Login estado={login} setEstado={setLogin} />}
                 {iniciar && <Iniciar estado={iniciar} setEstado={setIniciar} setUser={setUser} />}
-                {(!midias && !login && !iniciar) && <Mensagem user={user}/>}
+                {(!midias && !login && !iniciar) && <Mensagem user={user} tempoRedirect={tempoRedirect} jogoFinalizado={jogoFinalizado}/>}
                 {(!escolherMovie && midias && !jogoFinalizado) && <Midias listaMovie={listaMovie} setUser={setUser} setEscolherMovie={setEscolherMovie} setJogoFinalizado={setJogoFinalizado} />}
                 {sortear && <Sortear estado={sortear} setEstado={setSortear} setListaMovie={setListaMovie} />}
-                {(sortear || iniciar || midias) && <Finalizar />}
+                {(sortear || iniciar || midias) && <Finalizar setUser={setUser} setJogoFinalizado={setJogoFinalizado}/>}
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import { User } from 'interface/User';
 import styles from './Mensagem.module.scss';
 
-const Mensagem = ({user}: {user: User}) => {
+const Mensagem = ({user, tempoRedirect, jogoFinalizado}: {user: User, tempoRedirect: number, jogoFinalizado: boolean}) => {
     return(
         <>
            <h1 className={styles.saudacao}>Olá {user.usuario?.toLocaleUpperCase()}, vamos Jogar?</h1>
@@ -11,6 +11,7 @@ const Mensagem = ({user}: {user: User}) => {
                 <p><span>Lifes:</span> {user.life} </p>
                 <p><span>Rounds: {user.round}</span></p>
                 <p className={styles.score}><span>Score: </span> {user.score} pontos</p>
+                {jogoFinalizado && <p className={styles.tempoAcabando}>Você será redirecionado em: {tempoRedirect} segundos</p>}
             </div>
         </>
     )
