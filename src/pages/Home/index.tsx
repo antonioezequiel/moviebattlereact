@@ -7,6 +7,7 @@ import coroaOuro from 'assets/coroaOuro.jpg'
 import coroaPrata from 'assets/coroaPrata.jpg'
 import coroaBronze from 'assets/coroaBronze.jpg'
 import Load from 'components/load';
+import {CgSearch} from 'react-icons/cg'
 
 const Home = () => {
     const [lista, setLista] = useState<User[]>([]);
@@ -52,9 +53,10 @@ const Home = () => {
                     type="text"
                     className={styles.buscar}
                     autoFocus
-                    placeholder="Busque por um campeão..."
+                    placeholder={"Busque por um campeão..."}
                     onChange={event => setBusca(event.target.value)}
                 />
+                <CgSearch className={styles.icon} size={20} color="#4c4d5e"/>
             </div>
             <div className={styles['moments-container']}>
                 {lista.map(camp => (
