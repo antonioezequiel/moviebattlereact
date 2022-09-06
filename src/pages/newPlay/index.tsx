@@ -6,10 +6,12 @@ import Midias from 'components/midias';
 import Sortear from 'components/sortear';
 import { IMovie } from 'interface/IMovie';
 import { User } from 'interface/User';
-import { useEffect } from 'react';
+import { useEffect, createContext } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './NewPlay.module.scss';
+
+export const AppContext = createContext<any>(null);
 
 const NewPlay = () => {
     const [login, setLogin] = useState<boolean>(true);
@@ -35,12 +37,6 @@ const NewPlay = () => {
     }, [login]);
 
     useEffect(() => {
-        if (!sortear && !login) {
-            setMidias(true)
-        }
-    }, [sortear]);
-
-    useEffect(() => {
         if (!iniciar && !login) {
             setSortear(true);
         }
@@ -50,6 +46,9 @@ const NewPlay = () => {
         if (!iniciar && !login) {
             setMidias(true);
             setEscolherMovie(false)
+        }
+        if (!sortear && !login) {
+            setMidias(true)
         }
     }, [sortear]);
 
@@ -79,16 +78,18 @@ const NewPlay = () => {
     }, [jogoFinalizado]);
 
     return (
+        <AppContext.Provider value={{user, setUser, jogoFinalizado ,setJogoFinalizado}}>
         <div className={styles['play-container1']}>
             <div className={styles['play-container']}>
                 {login && <Login estado={login} setEstado={setLogin} />}
-                {iniciar && <Iniciar estado={iniciar} setEstado={setIniciar} setUser={setUser} />}
-                {(!midias && !login && !iniciar) && <Mensagem user={user} tempoRedirect={tempoRedirect} jogoFinalizado={jogoFinalizado}/>}
-                {(!escolherMovie && midias && !jogoFinalizado) && <Midias listaMovie={listaMovie} setUser={setUser} setEscolherMovie={setEscolherMovie} setJogoFinalizado={setJogoFinalizado} />}
+                {iniciar && <Iniciar estado={iniciar} setEstado={setIniciar} />}
+                {(!midias && !login && !iniciar) && <Mensagem tempoRedirect={tempoRedirect} />}
+                {(!escolherMovie && midias && !jogoFinalizado) && <Midias listaMovie={listaMovie} setEscolherMovie={setEscolherMovie} />}
                 {sortear && <Sortear estado={sortear} setEstado={setSortear} setListaMovie={setListaMovie} />}
-                {(sortear || iniciar || midias) && <Finalizar setUser={setUser} setJogoFinalizado={setJogoFinalizado}/>}
+                {(sortear || iniciar || midias) && <Finalizar />}
             </div>
         </div>
+        </AppContext.Provider>
     )
 }
 export default NewPlay;

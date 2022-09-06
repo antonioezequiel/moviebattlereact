@@ -51,7 +51,6 @@ export async function listarCampeoes(pagina: number) {
     })
     .catch(erro => {
       console.log(erro);
-      return false;
     });
 }
 

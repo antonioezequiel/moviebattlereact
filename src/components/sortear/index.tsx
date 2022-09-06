@@ -1,6 +1,5 @@
-import Button from "components/button";
-import { IMovie } from "interface/IMovie";
-import { buscarMidiasService } from "service/Service";
+import { IMovie } from 'interface/IMovie';
+import { buscarMidiasService } from 'service/Service';
 import styles from './Sortear.module.scss';
 
 const Sortear = ({ estado, setEstado, setListaMovie }: { estado: boolean, setEstado: React.Dispatch<React.SetStateAction<boolean>>, setListaMovie: React.Dispatch<React.SetStateAction<IMovie[]>> }) => {

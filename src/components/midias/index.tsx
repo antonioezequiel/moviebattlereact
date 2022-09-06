@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './Midia.module.scss';
 import { IMovie } from 'interface/IMovie';
 import { User } from 'interface/User';
 import { jogarService } from 'service/Service';
+import { AppContext } from 'pages/newPlay';
 
 interface Props {
     listaMovie: IMovie[],
-    setEscolherMovie: React.Dispatch<React.SetStateAction<boolean>>,
-    setUser: React.Dispatch<React.SetStateAction<User>>,
-    setJogoFinalizado: React.Dispatch<React.SetStateAction<boolean>>
+    setEscolherMovie: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Midias = ({ listaMovie, setEscolherMovie, setUser, setJogoFinalizado }: Props) => {
+const Midias = ({ listaMovie, setEscolherMovie}: Props) => {
+    const {setUser, setJogoFinalizado} = useContext(AppContext);
     async function escolhaFilme(movie: IMovie) {
         setEscolherMovie(true);
         const user: User = await jogarService(movie.imdbId);

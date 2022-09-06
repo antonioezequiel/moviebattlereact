@@ -1,7 +1,9 @@
-import { User } from 'interface/User';
+import { AppContext } from 'pages/newPlay';
+import { useContext } from 'react';
 import styles from './Mensagem.module.scss';
 
-const Mensagem = ({user, tempoRedirect, jogoFinalizado}: {user: User, tempoRedirect: number, jogoFinalizado: boolean}) => {
+const Mensagem = ({tempoRedirect}: {tempoRedirect: number}) => {
+    const {user, jogoFinalizado} = useContext(AppContext);
     return(
         <>
            <h1 className={styles.saudacao}>Olá {user.usuario?.toLocaleUpperCase()}, vamos Jogar?</h1>

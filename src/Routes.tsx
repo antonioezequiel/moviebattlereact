@@ -1,12 +1,12 @@
-import CreateUser from "pages/createUser";
-import NewPlay from "pages/newPlay";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import PaginaPadrao from "./pages/PaginaPadrao";
-import SobreNos from "./pages/Sobre";
+import CreateUser from 'pages/createUser';
+import NewPlay from 'pages/newPlay';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import PaginaPadrao from './pages/PaginaPadrao';
+import SobreNos from './pages/Sobre';
 
 const AppRouter = () => {
-    return (
+    return (    
         <main>
             <Router>
                 <Routes>
