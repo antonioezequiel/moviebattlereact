@@ -60,17 +60,23 @@ const NewPlay = () => {
         }
     }, [escolherMovie]);
 
+    function temporizador(temp: number){
+        setTimeout(()=>{
+            if(temp > 0 ){
+                setTempoRedirect(temp);
+                return temporizador(temp - 1);
+            }
+        }, 1000);
+    }
+
     useEffect(() => {
         if (!iniciar) {
             setTimeout(() => {
                 navigate('/');
-            }, 10000);
-
-            setInterval(()=>{
-                setTempoRedirect(tempoRedirect-1);
-            }, 1000);
+            }, 12000);
+            temporizador(tempoRedirect);
         }
-    }, [jogoFinalizado, tempoRedirect]);
+    }, [jogoFinalizado]);
 
     return (
         <div className={styles['play-container1']}>
