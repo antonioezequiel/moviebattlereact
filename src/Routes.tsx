@@ -6,15 +6,15 @@ import PaginaPadrao from './pages/PaginaPadrao';
 import SobreNos from './pages/Sobre';
 
 const AppRouter = () => {
-    return (    
+    return (
         <main>
             <Router>
                 <Routes>
-                    <Route path="/" element={<PaginaPadrao/>}>
+                    <Route path='/' element={<PaginaPadrao />}>
                         <Route index element={<Home />} />
-                        <Route path="/about" element={<SobreNos/> }></Route>
-                        <Route path="/create-user/new" element={<CreateUser/> }></Route>
-                        <Route path="/batalha/new" element={<NewPlay/> }></Route>
+                        <Route path='/about' element={<SobreNos />}></Route>
+                        <Route path='/create-user/new' element={<CreateUser />}></Route>
+                        <Route path='/batalha/new' element={<NewPlay />}></Route>
                     </Route>
                 </Routes>
             </Router>

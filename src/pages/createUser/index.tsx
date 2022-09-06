@@ -37,7 +37,7 @@ const CreateUser = () => {
                         <p></p>
                     </div>
                 </div>
-                <Button tipo='submit' valor='Salvar' onclick={()=>{}} />
+                <Button tipo='submit' valor='Salvar' onclick={()=>{console.log('teste')}} />
             </form>
         </div>
 

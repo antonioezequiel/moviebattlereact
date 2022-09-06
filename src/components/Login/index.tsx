@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { logarUsuarioService } from 'service/Service';
 import styles from './Login.module.scss';
 
-const Login = ({estado, setEstado}: {estado: boolean, setEstado: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const Login = ({setEstado}: {setEstado: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [login, setLogin] = useState<string>('');
     const [senha, setSenha] = useState<string>('');
 

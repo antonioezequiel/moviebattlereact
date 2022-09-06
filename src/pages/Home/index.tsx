@@ -60,7 +60,7 @@ const Home = () => {
             </div>
             <div className={styles['moments-container']}>
                 {lista.map(camp => (
-                    <div className={styles.moment}>
+                    <div className={styles.moment} key={camp.id}>
                         <div className={`${Number(camp.position) <= 3 && styles.topPosition} ${Number(camp.position) > 3 && styles.normal}`}>
                             {camp.position == 1 && <img src={coroaOuro} alt="coroaOuro" />}
                             {camp.position == 2 && <img src={coroaPrata} alt="coroaPrata" />}

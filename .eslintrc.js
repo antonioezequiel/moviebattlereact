@@ -7,10 +7,7 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:prettier/recommended"
+        "plugin:@typescript-eslint/recommended"
     ],
     "overrides": [
     ],
@@ -24,23 +21,6 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off",
-        "react/react-in-jsx-scope": "off",
-        "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "react/react-in-jsx-scope": "off"
     }
 }

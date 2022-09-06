@@ -1,4 +1,5 @@
 import Finalizar from 'components/finalizar';
+import useDidMountEffect from 'components/hooks/useDidMountEffect';
 import Iniciar from 'components/iniciar';
 import Login from 'components/Login';
 import Mensagem from 'components/messagem';
@@ -35,6 +36,11 @@ const NewPlay = () => {
             setIniciar(true);
         }
     }, [login]);
+
+   /* useDidMountEffect(()=> {
+        const agora = new Date();
+        console.log('olá, meu novo effect', agora.getTime());
+    }, []);*/
 
     useEffect(() => {
         if (!iniciar && !login) {
@@ -75,13 +81,13 @@ const NewPlay = () => {
             }, 12000);
             temporizador(tempoRedirect);
         }
-    }, [jogoFinalizado]);
+    }, [jogoFinalizado]); 
 
     return (
         <AppContext.Provider value={{user, setUser, jogoFinalizado ,setJogoFinalizado}}>
         <div className={styles['play-container1']}>
             <div className={styles['play-container']}>
-                {login && <Login estado={login} setEstado={setLogin} />}
+                {login && <Login setEstado={setLogin} />}
                 {iniciar && <Iniciar estado={iniciar} setEstado={setIniciar} />}
                 {(!midias && !login && !iniciar) && <Mensagem tempoRedirect={tempoRedirect} />}
                 {(!escolherMovie && midias && !jogoFinalizado) && <Midias listaMovie={listaMovie} setEscolherMovie={setEscolherMovie} />}
@@ -90,6 +96,6 @@ const NewPlay = () => {
             </div>
         </div>
         </AppContext.Provider>
-    )
+    );
 }
 export default NewPlay;

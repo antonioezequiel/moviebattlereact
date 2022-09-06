@@ -27,7 +27,7 @@ const Midias = ({ listaMovie, setEscolherMovie}: Props) => {
                 {listaMovie.length > 0 && <h2 className={styles.apresentacaoMovies}>Escolha a Mídia que você acha que teve mais votos no IMDB</h2>}
                 <div className={styles.container_movies}>
                     {listaMovie.map(movie => (
-                        <div className={`${movie.position == 1 && styles.positionOne} ${movie.position == 2 && styles.positionTwo}`}>
+                        <div key={movie.imdbId} className={`${movie.position == 1 && styles.positionOne} ${movie.position == 2 && styles.positionTwo}`}>
                             <h3 className={styles.tituloMovie}>Dados da {movie.position} ª Midia</h3>
                             <img src={movie.foto} alt={movie.title} className={styles.imgMovie} />
                             <p className={styles.dadosMovie}>Código IMDB: {movie.imdbId}</p>
