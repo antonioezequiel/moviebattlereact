@@ -1,12 +1,14 @@
+import { NavegacaoContext } from 'common/context/navegacao';
 import Input from 'components/input';
 import { IUserToken } from 'interface/IUserToken';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { logarUsuarioService } from 'service/Service';
 import styles from './Login.module.scss';
 
 const Login = ({setEstado}: {setEstado: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [login, setLogin] = useState<string>('');
     const [senha, setSenha] = useState<string>('');
+    const {iniciar, setIniciar} = useContext(NavegacaoContext);
 
     function logarUsuario (event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -16,9 +18,10 @@ const Login = ({setEstado}: {setEstado: React.Dispatch<React.SetStateAction<bool
     async function executarLogin() {
        const userToken: IUserToken = await logarUsuarioService(login, senha);
        localStorage.setItem('token', userToken.token);
-       //console.log(localStorage.getItem('token'));
        setEstado(false);
-       
+
+       /* controle de navegação */
+       setIniciar(!iniciar);
     }
 
     return (

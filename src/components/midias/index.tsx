@@ -4,6 +4,7 @@ import { IMovie } from 'interface/IMovie';
 import { User } from 'interface/User';
 import { jogarService } from 'service/Service';
 import { AppContext } from 'pages/newPlay';
+import { NavegacaoContext } from 'common/context/navegacao';
 
 interface Props {
     listaMovie: IMovie[],
@@ -12,10 +13,15 @@ interface Props {
 
 const Midias = ({ listaMovie, setEscolherMovie}: Props) => {
     const {setUser, setJogoFinalizado} = useContext(AppContext);
+    const {setMidias, setSortear} = useContext(NavegacaoContext);
     async function escolhaFilme(movie: IMovie) {
         setEscolherMovie(true);
         const user: User = await jogarService(movie.imdbId);
         setUser(user);
+
+        /* navegação dos componentes */
+        setMidias(false);
+        setSortear(true);
 
         if (user.life === 0) {
             setJogoFinalizado(true);
