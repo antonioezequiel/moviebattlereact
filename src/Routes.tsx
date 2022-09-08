@@ -1,4 +1,4 @@
-import { NavegacaoProvider } from 'common/context/navegacao';
+import { NavegacaoProvider } from 'common/context/navegacaoProvider';
 import CreateUser from 'pages/createUser';
 import NewPlay from 'pages/newPlay';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -15,7 +15,7 @@ const AppRouter = () => {
                         <Route index element={<Home />} />
                         <Route path='/about' element={<SobreNos />}></Route>
                         <Route path='/create-user/new' element={<CreateUser />}></Route>
-                        <Route path='/batalha/new' element={  <NavegacaoProvider><NewPlay /> </NavegacaoProvider> }>
+                        <Route path='/batalha/new' element={  <NavegacaoProvider> <NewPlay /> </NavegacaoProvider> }>
                         </Route>
                     </Route>
                 </Routes>

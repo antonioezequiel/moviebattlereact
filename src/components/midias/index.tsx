@@ -1,34 +1,33 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import styles from './Midia.module.scss';
 import { IMovie } from 'interface/IMovie';
 import { User } from 'interface/User';
 import { jogarService } from 'service/Service';
 import { AppContext } from 'pages/newPlay';
-import { NavegacaoContext } from 'common/context/navegacao';
+import { useNavegacaoContext } from 'common/context/navegacaoConsumer';
 
 interface Props {
-    listaMovie: IMovie[],
-    setEscolherMovie: React.Dispatch<React.SetStateAction<boolean>>
+    listaMovie: IMovie[]
 }
 
-const Midias = ({ listaMovie, setEscolherMovie}: Props) => {
-    const {setUser, setJogoFinalizado} = useContext(AppContext);
-    const {setMidias, setSortear} = useContext(NavegacaoContext);
+const Midias = ({listaMovie}: Props) => {
+    const {setUser} = useContext(AppContext);
+    const {navegarParaSortear, navegarParaFinalizar, exibeCompMidias} = useNavegacaoContext();
+
     async function escolhaFilme(movie: IMovie) {
-        setEscolherMovie(true);
         const user: User = await jogarService(movie.imdbId);
         setUser(user);
 
-        /* navegação dos componentes */
-        setMidias(false);
-        setSortear(true);
-
-        if (user.life === 0) {
-            setJogoFinalizado(true);
-        }
+        /* navegação dos componentes dependendo do estado das vidas*/
+        if (user.life === 0)
+            navegarParaFinalizar();
+        else
+            navegarParaSortear();
+        
     }
     return (
         <>
+        {exibeCompMidias() &&
             <div className={styles.containerGeral}>
                 {listaMovie.length > 0 && <h2 className={styles.apresentacaoMovies}>Escolha a Mídia que você acha que teve mais votos no IMDB</h2>}
                 <div className={styles.container_movies}>
@@ -45,6 +44,7 @@ const Midias = ({ listaMovie, setEscolherMovie}: Props) => {
                     ))}
                 </div>
             </div>
+        }
         </>
 
     )
