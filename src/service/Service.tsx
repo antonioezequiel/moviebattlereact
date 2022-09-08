@@ -60,8 +60,7 @@ export async function logarUsuarioService(login: string, senha: string) {
       return resp.data;
     })
     .catch(erro => {
-      console.log(erro);
-      return { token: '', tipo: '' };
+      throw new Error('Dados de acesso do usuário inválido');
     });
 }
 
@@ -75,16 +74,7 @@ export async function iniciarPartidaService() {
       return resp.data;
     })
     .catch(erro => {
-      console.log(erro);
-      return {
-        position: 0,
-        title: '',
-        year: 0,
-        imdbId: 1,
-        score: 0,
-        foto: '',
-        categoria: ''
-      };
+      throw new Error('Não foi possível iniciar uma nova partida');
     });
 }
 
@@ -98,15 +88,7 @@ export async function buscarMidiasService() {
       return resp.data;
     })
     .catch(erro => {
-      console.log(erro);
-      return {
-        position: 0,
-        title: '',
-        year: 0,
-        imdbId: 1,
-        foto: '',
-        categoria: ''
-      };
+     throw new Error('Não foi possível sortear as mídias');
     });
 }
 
@@ -122,15 +104,7 @@ export async function jogarService(imdbId: number) {
     })
     .catch(erro => {
       console.log(erro);
-      return {
-        position: 0,
-        title: '',
-        year: 0,
-        imdbId: 1,
-        score: 0,
-        foto: '',
-        categoria: ''
-      };
+      throw new Error('Não foi possível realizar a jogada');
     });
 }
 
@@ -145,14 +119,6 @@ export async function finalizarJogoService() {
     })
     .catch(erro => {
       console.log(erro);
-      return {
-        position: 0,
-        title: '',
-        year: 0,
-        imdbId: 1,
-        score: 0,
-        foto: '',
-        categoria: ''
-      };
+      throw new Error('Não foi possível finalizar a partida');
     });
 }

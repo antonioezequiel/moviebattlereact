@@ -67,7 +67,7 @@ const Home = () => {
                             {camp.position == 3 && <img src={coroaBronze} alt="coroaBronze" />}
                             <div className={styles.content}>
                                 <h2>{camp.position} ª Posição </h2>
-                                <p>Nome: {camp.usuario}</p>
+                                <p>Nome: {camp.usuario?.toUpperCase()}</p>
                                 <p> {camp.score} pontos</p>
                             </div>
                         </div>

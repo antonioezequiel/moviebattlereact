@@ -7,10 +7,14 @@ const Finalizar = () => {
     const {setUser} = useContext(AppContext);
     const {navegarParaFinalizar, exibeCompFinalizar} = useNavegacaoContext();
     const finalizarJogo = async () => {
-        setUser(await finalizarJogoService());
-
-        /* controle de navegação, para finalizar jogo */ 
-        navegarParaFinalizar();
+        try {
+            setUser(await finalizarJogoService());
+            /* controle de navegação, para finalizar jogo */ 
+            navegarParaFinalizar();
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
     return (
         <>

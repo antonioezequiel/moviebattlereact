@@ -6,12 +6,16 @@ import styles from './Sortear.module.scss';
 const Sortear = ({ setListaMovie }: { setListaMovie: React.Dispatch<React.SetStateAction<IMovie[]>> }) => {
     const {navegarParaExibirMidias, exibeCompSortear} = useNavegacaoContext();
     const buscarMidias = async () => {
-        const listaProv: IMovie[] = await buscarMidiasService().then();
-        let posicao = 0;
-        setListaMovie(listaProv.map(camp => { camp.position = ++posicao; return camp }));
+        try {
+            const listaProv: IMovie[] = await buscarMidiasService().then();
+            let posicao = 0;
+            setListaMovie(listaProv.map(camp => { camp.position = ++posicao; return camp }));
         
-        /* Ajustes de navegação, navega para exibir as mídias */
-        navegarParaExibirMidias();
+            /* Ajustes de navegação, navega para exibir as mídias */
+            navegarParaExibirMidias();
+        } catch (error) {
+            console.log(error);
+        }     
     }
 
     return (

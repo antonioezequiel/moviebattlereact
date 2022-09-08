@@ -17,11 +17,14 @@ const Login = () => {
     }
 
     async function executarLogin() {
-       const userToken: IUserToken = await logarUsuarioService(login, senha);
-       localStorage.setItem('token', userToken.token);
-
-       /* controle de navegação, após login, renderizar o botão iniciar */
-       navegarParaIniciar();
+        try {
+            const userToken: IUserToken = await logarUsuarioService(login, senha);
+            localStorage.setItem('token', userToken.token);
+            /* controle de navegação, após login, renderizar o botão iniciar */
+            navegarParaIniciar();
+        } catch (error) {
+            alert(error);
+        }      
     }
 
     return (

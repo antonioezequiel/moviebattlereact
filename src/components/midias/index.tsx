@@ -15,15 +15,18 @@ const Midias = ({listaMovie}: Props) => {
     const {navegarParaSortear, navegarParaFinalizar, exibeCompMidias} = useNavegacaoContext();
 
     async function escolhaFilme(movie: IMovie) {
-        const user: User = await jogarService(movie.imdbId);
-        setUser(user);
+        try {
+            const user: User = await jogarService(movie.imdbId);
+            setUser(user);
 
-        /* navegação dos componentes dependendo do estado das vidas*/
-        if (user.life === 0)
-            navegarParaFinalizar();
-        else
-            navegarParaSortear();
-        
+            /* navegação dos componentes dependendo do estado das vidas*/
+            if (user.life === 0)
+                navegarParaFinalizar();
+            else
+                navegarParaSortear();
+        } catch (error) {
+            console.log(error);
+        }
     }
     return (
         <>

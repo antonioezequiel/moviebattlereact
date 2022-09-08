@@ -9,11 +9,15 @@ const Iniciar = () => {
     const {setUser} = useContext(AppContext);
     const {navegarParaSortear, exibeCompIniciar} = useNavegacaoContext();
     const iniciarJogo = async () => {
-        const user: User = await iniciarPartidaService();
-        setUser(user);
+        try {
+            const user: User = await iniciarPartidaService();
+            setUser(user);
+            /* Ajustes da navegaçao, navega para exibir a opção de sortear */
+            navegarParaSortear();
+        } catch (error) {
+            console.log(error);
+        }
         
-        /* Ajustes da navegaçao, navega para exibir a opção de sortear */
-        navegarParaSortear();
     }
     return (
         <>
