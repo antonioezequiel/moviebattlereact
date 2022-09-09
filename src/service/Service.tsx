@@ -2,7 +2,6 @@ import { IMovie } from 'interface/IMovie';
 import { IUserToken } from 'interface/IUserToken';
 import { IUsuario } from 'interface/IUsuario';
 import { User } from 'interface/User';
-import React from 'react';
 import http from './index';
 
 //export declare const BuscaRestaurantes: () => IRestaurante[];
@@ -32,7 +31,7 @@ export async function apagaRestaurante(restauranteExcluir: IRestaurante) {
 */
 
 export async function cadastrarUsuarioService(login: string, senha: string) {
-  return await http.post<IUsuario>(`create/new-user`, { nome: login, senha })
+  return http.post<IUsuario>(`create/new-user`, { nome: login, senha })
     .then(resp => {
       return true;
     })
@@ -44,7 +43,7 @@ export async function cadastrarUsuarioService(login: string, senha: string) {
 
 export async function listarCampeoes(pagina: number) {
   console.log(`api/movieshow/ranking?page=${pagina}`);
-  return await http.get<User[]>(`api/movieshow/ranking?page=${pagina}`)
+  return http.get<User[]>(`api/movieshow/ranking?page=${pagina}`)
     .then(resp => {
       //console.log(resp.data);
       return resp.data;
@@ -55,7 +54,7 @@ export async function listarCampeoes(pagina: number) {
 }
 
 export async function logarUsuarioService(login: string, senha: string) {
-  return await http.post<IUserToken>(`auth`, { login, senha })
+  return http.post<IUserToken>(`auth`, { login, senha })
     .then(resp => {
       return resp.data;
     })
@@ -65,11 +64,11 @@ export async function logarUsuarioService(login: string, senha: string) {
 }
 
 export async function iniciarPartidaService() {
-  return await http.get<User>(`api/movieshow/iniciar`, {
-        headers: {
-          'Authorization':  `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+  return http.get<User>(`api/movieshow/iniciar`, {
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  })
     .then(resp => {
       return resp.data;
     })
@@ -79,26 +78,26 @@ export async function iniciarPartidaService() {
 }
 
 export async function buscarMidiasService() {
-  return await http.get<IMovie[]>(`api/movieshow/sortear`, {
-        headers: {
-          'Authorization':  `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+  return http.get<IMovie[]>(`api/movieshow/sortear`, {
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  })
     .then(resp => {
       return resp.data;
     })
     .catch(erro => {
-     throw new Error('Não foi possível sortear as mídias');
+      throw new Error('Não foi possível sortear as mídias');
     });
 }
 
 export async function jogarService(imdbId: number) {
   console.log(imdbId);
-  return await http.post<User>(`api/movieshow/jogar`, {imdbID: imdbId}, {
-        headers: {
-          'Authorization':  `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+  return http.post<User>(`api/movieshow/jogar`, { imdbID: imdbId }, {
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  })
     .then(resp => {
       return resp.data;
     })
@@ -109,11 +108,11 @@ export async function jogarService(imdbId: number) {
 }
 
 export async function finalizarJogoService() {
-  return await http.get<User>(`api/movieshow/finalizar`, {
-        headers: {
-          'Authorization':  `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+  return http.get<User>(`api/movieshow/finalizar`, {
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    }
+  })
     .then(resp => {
       return resp.data;
     })

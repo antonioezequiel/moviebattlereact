@@ -25,3 +25,5 @@ const AppRouter = () => {
 }
 
 export default AppRouter;
+
+/*estudar rotas privadas e rotas públicas */

@@ -6,9 +6,7 @@ import { jogarService } from 'service/Service';
 import { AppContext } from 'pages/newPlay';
 import { useNavegacaoContext } from 'common/context/navegacaoConsumer';
 
-interface Props {
-    listaMovie: IMovie[]
-}
+interface Props { listaMovie: IMovie[] }
 
 const Midias = ({listaMovie}: Props) => {
     const {setUser} = useContext(AppContext);
@@ -32,7 +30,8 @@ const Midias = ({listaMovie}: Props) => {
         <>
         {exibeCompMidias() &&
             <div className={styles.containerGeral}>
-                {listaMovie.length > 0 && <h2 className={styles.apresentacaoMovies}>Escolha a Mídia que você acha que teve mais votos no IMDB</h2>}
+                {listaMovie.length > 0 && 
+                    <h2 className={styles.apresentacaoMovies}>Escolha a Mídia que você acha que teve mais votos no IMDB</h2>}
                 <div className={styles.container_movies}>
                     {listaMovie.map(movie => (
                         <div key={movie.imdbId} className={`${movie.position == 1 && styles.positionOne} ${movie.position == 2 && styles.positionTwo}`}>
@@ -49,7 +48,6 @@ const Midias = ({listaMovie}: Props) => {
             </div>
         }
         </>
-
     )
 }
 
